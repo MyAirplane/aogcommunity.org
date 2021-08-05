@@ -32,6 +32,6 @@
     "netlify-cli": "^4.1.18",
     "tailwindcss": "^2.2.4",
     "vite": "^2.4.1",
-    "vite-plugin-pwa": "^0.8.1"
+    "vite-plugin-pwa": "^0.9.3"
   }
 }
