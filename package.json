@@ -12,7 +12,7 @@
     "@supabase/supabase-js": "^1.21.0",
     "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
-    "libphonenumber-js": "^1.9.22",
+    "libphonenumber-js": "^1.9.23",
     "notiwind": "^1.2.2",
     "twilio": "^3.66.1",
     "vue": "^3.1.4",
@@ -28,10 +28,10 @@
     "@types/tailwindcss": "^2.2.1",
     "@vitejs/plugin-vue": "^1.2.4",
     "@vue/compiler-sfc": "^3.1.5",
-    "autoprefixer": "^10.2.6",
+    "autoprefixer": "^10.3.1",
     "netlify-cli": "^6.0.5",
     "tailwindcss": "^2.2.7",
-    "vite": "^2.4.1",
+    "vite": "^2.4.4",
     "vite-plugin-pwa": "^0.9.3"
   }
 }
