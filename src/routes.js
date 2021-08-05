@@ -43,6 +43,7 @@ export const routes = [
       },
       {
         path: "/contact",
+        alias: "/contact-us",
         name: "contact",
         meta: { title: "Contact Us" },
         component: Contact,
