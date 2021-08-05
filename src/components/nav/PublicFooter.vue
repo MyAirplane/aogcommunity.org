@@ -15,6 +15,7 @@
             <a
               v-if="item.href"
               :href="item.to"
+              rel="noopener noreferrer"
               class="text-base text-gray-600 hover:text-gray-800"
             >
               {{ item.name }}
@@ -40,6 +41,7 @@
             <a
               v-if="item.href"
               :href="item.href"
+              rel="noopener noreferrer"
               target="_blank"
               class="text-base text-gray-600 hover:text-gray-800"
             >
