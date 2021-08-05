@@ -81,6 +81,7 @@
 <script>
 const footerNavigation = {
   support: [
+    { name: "Help Docs", href: "https://docs.aogcommunity.org" },
     { name: "System Status", href: "https://status.aogcommunity.org" },
     { name: "Contact Us", to: "/contact" },
   ],
