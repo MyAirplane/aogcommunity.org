@@ -10,12 +10,10 @@ exports.handler = async function (event) {
     };
   }
 
-  const { count } = await supabase
-    .from("profiles")
-    .select("*", { count: "exact" });
+  const { data } = await supabase.rpc("get_user_count");
 
   return {
     statusCode: 200,
-    body: JSON.stringify({ count: count }),
+    body: JSON.stringify({ count: data || 0 }),
   };
 };
