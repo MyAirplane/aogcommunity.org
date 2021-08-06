@@ -52,6 +52,7 @@
                   name="first_name"
                   id="first_name"
                   autocomplete="given-name"
+                  :value="store.profile.first_name"
                   class="
                     py-3
                     px-4
@@ -82,6 +83,7 @@
                   name="last_name"
                   id="last_name"
                   autocomplete="family-name"
+                  :value="store.profile.last_name"
                   class="
                     py-3
                     px-4
@@ -111,6 +113,7 @@
                   name="email"
                   type="email"
                   autocomplete="email"
+                  :value="store.profile.email"
                   class="
                     py-3
                     px-4
@@ -191,9 +194,14 @@
 </template>
 <script>
 import Dots from "./Dots.vue";
+import { store } from "../../store";
+
 export default {
   components: {
     Dots,
+  },
+  setup() {
+    return { store };
   },
 };
 </script>
