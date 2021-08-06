@@ -71,7 +71,7 @@
         </div>
         <div>
           <p class="pt-4 mt-autofont-light text-xs text-gray-600">
-            &copy; 2020 MyAirplane&trade; App. All rights reserved.
+            &copy; 2021 MyAirplane&trade; App. All rights reserved.
           </p>
         </div>
       </div>
