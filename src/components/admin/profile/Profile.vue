@@ -44,7 +44,7 @@
             class="block text-sm font-medium text-gray-700"
             >Home Airport</label
           >
-          <airport-search v-model="home_airport" pre-selected></airport-search>
+          <airport-search v-model="home_airport"></airport-search>
 
           <p class="text-xs mt-1 text-gray-500">
             Your home or nearest airport used for notifications of AOG events
