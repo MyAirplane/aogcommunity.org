@@ -8,6 +8,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         autocomplete="off"
+        @focus="activateSearch"
         :disabled="selected"
         ref="airport"
         required
@@ -42,7 +43,7 @@
         border border-gray-200
         shadow-lg
       "
-      v-if="!selected && modelValue"
+      v-if="!selected && modelValue && activated"
     >
       <p
         v-if="modelValue.length <= 2 && !airports.length"
@@ -107,16 +108,17 @@ import { XIcon } from "@heroicons/vue/solid";
 import Spinner from "./Spinner.vue";
 
 export default {
-  props: { modelValue: String, preSelected: Boolean },
+  props: { modelValue: String },
   emits: ["update:modelValue"],
   components: { XIcon, Spinner },
 
   setup(props, { emit }) {
     const airports = ref({});
     const loading = ref(false);
-    const selected = ref(props.preSelected);
+    const selected = ref(false);
     const displayId = ref("");
     const displayName = ref("");
+    const activated = ref(false);
 
     async function getAirports() {
       try {
@@ -154,6 +156,10 @@ export default {
       selected.value = false;
     }
 
+    async function activateSearch() {
+      activated.value = true;
+    }
+
     watch(
       () => props.modelValue,
       () => {
@@ -176,11 +182,13 @@ export default {
       selected,
       displayId,
       displayName,
+      activated,
 
       loading,
       getAirports,
       setAirport,
       clearAirport,
+      activateSearch,
     };
   },
 };
