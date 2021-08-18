@@ -1,6 +1,10 @@
 <template>
   <div class="max-w-2xl mx-auto pb-6 sm:px-6 lg:px-8">
-    <div class="bg-white sm:rounded-lg shadow">
+    <div v-if="!store.profile.verified" class="bg-white sm:rounded-lg shadow">
+      Before you are able to create a new Local Chat, you need to verify your
+      profile.
+    </div>
+    <div v-else class="bg-white sm:rounded-lg shadow">
       <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
         <h2 class="text-lg leading-6 font-bold text-red-700">
           Connect with local pilots now
