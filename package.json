@@ -28,7 +28,7 @@
     "@types/tailwindcss": "^2.2.1",
     "@vitejs/plugin-vue": "^1.6.0",
     "@vue/compiler-sfc": "^3.2.6",
-    "autoprefixer": "^10.3.1",
+    "autoprefixer": "^10.3.3",
     "netlify-cli": "^6.7.6",
     "tailwindcss": "^2.2.8",
     "vite": "^2.5.1",
