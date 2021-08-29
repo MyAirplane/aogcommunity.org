@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@headlessui/vue": "^1.4.0",
-    "@heroicons/vue": "^1.0.3",
+    "@heroicons/vue": "^1.0.4",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
