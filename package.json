@@ -15,7 +15,7 @@
     "libphonenumber-js": "^1.9.25",
     "notiwind": "^1.2.2",
     "twilio": "^3.66.1",
-    "vue": "^3.2.6",
+    "vue": "^3.2.7",
     "vue-router": "^4.0.11"
   },
   "devDependencies": {
