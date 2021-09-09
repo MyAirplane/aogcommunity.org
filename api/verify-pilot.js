@@ -1,7 +1,19 @@
 require("dotenv").config();
-const { VITE_SUPABASE_URL, SUPABASE_SERVICE_KEY } = process.env;
+const {
+  VITE_SUPABASE_URL,
+  SUPABASE_SERVICE_KEY,
+  SENDGRID_API_KEY,
+  SENDGRID_MSG_SERVICE_ID,
+  SUPPORT_EMAIL,
+} = process.env;
+
+// supabase client
 const { createClient } = require("@supabase/supabase-js");
 const supabase = createClient(VITE_SUPABASE_URL, SUPABASE_SERVICE_KEY);
+
+// sendgrid client
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(SENDGRID_API_KEY);
 
 exports.handler = async function (event) {
   // only allow POST method
@@ -50,6 +62,86 @@ exports.handler = async function (event) {
     console.log(data || error);
 
     if (!count) {
+      // no count, update profile to under_review
+      const { data: profile, error: profile_error } = await supabase
+        .from("profiles")
+        .update({
+          verified: false,
+          verified_id: "under_review",
+        })
+        .eq("id", user.id)
+        .single();
+
+      console.log(profile || profile_error);
+
+      // notify support for manual verification
+      const msg = {
+        to: SUPPORT_EMAIL,
+        from: "no_reply@aogcommunity.org",
+        reply_to: profile.email,
+        subject: `Pilot Verification Request for ${profile.username}`,
+        text: `User ${profile.username} requires manual verification.`,
+        html: `<h3>Pilot Verification Request</h3>
+                  <ul>
+                      <li><b>Username:</b> ${profile.username}</li>
+                      <li><b>First Name:</b> ${first_name}</li>
+                      <li><b>Last Name:</b> ${last_name}</li>
+                      <li><b>Medical Class:</b> ${body.med_class}</li>
+                      <li><b>Medical Date:</b> ${body.med_date}</li>
+                  </ul>`,
+      };
+
+      // send it
+      const email_res = await sgMail.send(msg);
+
+      console.log(email_res);
+
+      return {
+        statusCode: status,
+        body: JSON.stringify({
+          under_review: true,
+          verified: false,
+        }),
+      };
+    } else if (count == 1) {
+      // verified, update profile & return ID
+      const { data: profile, error: profile_error } = await supabase
+        .from("profiles")
+        .update({
+          verified: true,
+          verified_id: data[0].UNIQUE_ID,
+        })
+        .eq("id", user.id);
+
+      console.log(profile || profile_error);
+
+      if (profile) {
+        return {
+          statusCode: status,
+          body: JSON.stringify({
+            count: count,
+            verified: true,
+            verified_id: data[0].UNIQUE_ID,
+          }),
+        };
+      }
+    }
+  } else {
+    // verify from basicmed
+    // format the date per faa spec
+    let md_parser = body.med_date.split("/");
+    let med_date = md_parser[2] + md_parser[0] + md_parser[1];
+
+    const { data, error, status, count } = await supabase
+      .from("pilots_basic")
+      .select("UNIQUE_ID", { count: "exact" })
+      .eq("FIRST_NAME", first_name)
+      .eq("LAST_NAME", last_name)
+      .eq("BASIC_MED_CMEC_DATE", med_date);
+
+    console.log(data || error);
+
+    if (!count) {
       // no count, return 0
       return {
         statusCode: status,
@@ -88,30 +180,6 @@ exports.handler = async function (event) {
           count: count,
           verified: false,
         }),
-      };
-    }
-  } else {
-    // verify from basicmed
-    const { data, error, status } = await supabase
-      .from("pilots_basic")
-      .select("UNIQUE_ID")
-      .eq("FIRST_NAME", first_name)
-      .eq("LAST_NAME", last_name + " ")
-      .eq("MED_CLASS", med_class)
-      .eq("MED_DATE", med_date)
-      .single();
-
-    console.log(data || error);
-
-    if (data) {
-      return {
-        statusCode: status,
-        body: JSON.stringify({ verified: true, verified_id: data.UNIQUE_ID }),
-      };
-    } else {
-      return {
-        statusCode: status,
-        body: JSON.stringify(error),
       };
     }
   }

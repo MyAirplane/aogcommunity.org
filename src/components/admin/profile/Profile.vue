@@ -7,6 +7,14 @@
         title="Profile Required"
         msg="You must complete your profile before you can participate in our community."
       />
+      <InfoCard
+        v-else-if="!store.profile.verified"
+        class="mb-6"
+        title="Pilot Verification Recommended"
+        msg="Per our Community Guidelines, until your profile is verified you will not be able to create a new Local Chat."
+        linktitle="Verify Now"
+        linkto="/app/profile/verify"
+      />
       <form
         class="space-y-6 grid grid-cols-1 lg:grid-cols-2 gap-x-4"
         @submit.prevent="updateProfile"

@@ -79,7 +79,7 @@
           <div class="mt-2">
             <p class="text-sm text-gray-500">
               Your profile has been submitted for manual verification and is
-              still under review. This process may take up to 48 hours.
+              under review. This process may take up to 48 hours.
             </p>
           </div>
         </div>
@@ -265,7 +265,9 @@
             <litepie-datepicker
               class="mt-2 rounded-md shadow-sm"
               as-single
-              :formatter="formatter"
+              :formatter="
+                med_class == 'BasicMed' ? basicmed_formatter : formatter
+              "
               required
               v-model="med_date"
             ></litepie-datepicker>
@@ -295,9 +297,9 @@
             />
           </div>
         </form>
-        <!-- Step 2 - with city -->
+        <!-- WIP! Step 2 - with city -->
         <form
-          v-if="step == 1"
+          v-if="step == 2"
           class="space-y-6 mt-2 grid grid-cols-1"
           @submit.prevent="verifyPilotcity"
         >
@@ -399,6 +401,10 @@ export default {
       date: "M/DD/YYYY",
       month: "MMMM",
     });
+    const basicmed_formatter = ref({
+      date: "MM/DD/YYYY",
+      month: "MMMM",
+    });
     const step = ref(1);
 
     async function nextStep(stepNo) {
@@ -433,9 +439,14 @@ export default {
             text: "Your profile has been verified.",
           });
           router.go(); // refresh the page to show verification
-        } else if (data.count > 1) {
-          // requires more verification, ask for city
-          step.value = 2;
+        } else if (data.under_review == true) {
+          notify({
+            group: "toast",
+            type: "success",
+            title: "Pending",
+            text: "Your profile could not be verified automatically and is under review.",
+          });
+          router.go(); // refresh the page to show verification
         } else {
           // no results
           notify(
@@ -443,51 +454,13 @@ export default {
               group: "toast",
               type: "error",
               title: "Error",
-              text: data.error,
+              text: data.error || "Sorry, there was an error.",
             },
             6000
           );
         }
       } finally {
         loading.value = false;
-      }
-    }
-
-    async function verifyPilotcity() {
-      loading.value = true;
-      try {
-        const session = supabase.auth.session();
-        const pilotData = {
-          first_name: first_name.value,
-          middle_name: middle_name.value,
-          last_name: store.profile.last_name,
-          med_class: med_class.value,
-          med_date: med_date.value,
-          city: city.value,
-        };
-        let res = await fetch(`/.netlify/functions/verify-pilot-city`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            token: session.access_token,
-          },
-          body: JSON.stringify(pilotData),
-        });
-        let data = await res.json();
-        if (!data) {
-          notify(
-            {
-              group: "toast",
-              type: "error",
-              title: "Error",
-              text: "Sorry, there was a problem.",
-            },
-            6000
-          );
-        }
-      } finally {
-        loading.value = false;
-        router.push("/app/profile/verify");
       }
     }
 
@@ -509,6 +482,7 @@ export default {
       med_date,
       city,
       formatter,
+      basicmed_formatter,
 
       nextStep,
       verifyPilot,
