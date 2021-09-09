@@ -16,6 +16,31 @@
             {{ msg }}
           </p>
         </div>
+        <router-link
+          v-if="linkto"
+          :to="linkto"
+          class="
+            mt-2
+            inline-flex
+            justify-center
+            w-full
+            rounded-md
+            border border-transparent
+            shadow-sm
+            px-4
+            py-2
+            bg-green-600
+            text-base
+            font-medium
+            text-white
+            hover:bg-green-700
+            focus:outline-none
+            focus:ring-2 focus:ring-offset-2 focus:ring-green-500
+            sm:text-sm
+          "
+        >
+          {{ linktitle }} &rarr;
+        </router-link>
       </div>
     </div>
   </div>
@@ -25,7 +50,12 @@
 import { ExclamationIcon } from "@heroicons/vue/solid";
 
 export default {
-  props: { title: String, msg: String },
+  props: {
+    title: String,
+    msg: String,
+    linktitle: String,
+    linkto: String,
+  },
   components: {
     ExclamationIcon,
   },
