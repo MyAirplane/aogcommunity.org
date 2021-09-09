@@ -71,7 +71,15 @@
         </div>
         <div>
           <p class="pt-4 mt-autofont-light text-xs text-gray-600">
-            &copy; 2021 MyAirplane&trade; App. All rights reserved.
+            &copy; 2021
+            <a
+              href="https://myairplane.io/"
+              rel="noopener"
+              target="_blank"
+              aria-label="MyAirplane App"
+              class="hover:text-primary-500"
+              >MyAirplane™ App</a
+            >. All rights reserved.
           </p>
         </div>
       </div>

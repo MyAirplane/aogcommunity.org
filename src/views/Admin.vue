@@ -20,7 +20,17 @@
     <footer>
       <div class="mx-auto px-4 mb-14">
         <div class="text-xs text-gray-500 font-light text-center">
-          <span class="block sm:inline">&copy; 2021 MyAirplane&trade;</span>
+          <span class="block sm:inline"
+            >&copy; 2021
+            <a
+              href="https://myairplane.io/"
+              rel="noopener"
+              target="_blank"
+              aria-label="MyAirplane App"
+              class="hover:text-primary-500"
+              >MyAirplane™ App</a
+            ></span
+          >
           <span class="block sm:inline pl-1">All rights reserved.</span>
         </div>
       </div>
