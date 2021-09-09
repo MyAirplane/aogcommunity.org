@@ -1,9 +1,15 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const path = require("path");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
   mode: "jit",
   purge: {
-    content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
+    content: [
+      "./index.html",
+      "./src/**/*.{vue,js,ts,jsx,tsx}",
+      path.resolve(__dirname, "./node_modules/litepie-datepicker/**/*.js"),
+    ],
     options: {
       safelist: [
         "transition",
@@ -55,10 +61,21 @@ module.exports = {
       fontFamily: {
         sans: ['"Inter var"', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        "litepie-primary": colors.red, // color system for light mode
+        "litepie-secondary": colors.gray, // color system for dark mode
+      },
       height: {
         100: "32rem",
         108: "36rem",
       },
+    },
+  },
+  variants: {
+    extend: {
+      cursor: ["disabled"],
+      textOpacity: ["disabled"],
+      textColor: ["disabled"],
     },
   },
   plugins: [

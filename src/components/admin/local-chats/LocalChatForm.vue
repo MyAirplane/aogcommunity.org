@@ -1,6 +1,15 @@
 <template>
   <div class="max-w-2xl mx-auto pb-6 sm:px-6 lg:px-8">
-    <div class="bg-white sm:rounded-lg shadow">
+    <div v-if="!store.profile.verified" class="bg-white sm:rounded-lg shadow">
+      <InfoCard
+        class="mb-6"
+        title="Pilot Verification Required"
+        msg="Per our Community Guidelines, you must affirm you hold a valid pilot certificate from the FAA before creating a Local Chat."
+        linktitle="Verify Now"
+        linkto="/app/profile/verify"
+      />
+    </div>
+    <div v-else class="bg-white sm:rounded-lg shadow">
       <div class="px-4 py-5 border-b border-gray-200 sm:px-6">
         <h2 class="text-lg leading-6 font-bold text-red-700">
           Connect with local pilots now
@@ -347,6 +356,7 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import AvatarUploader from "../profile/AvatarUploader.vue";
 import AirportSearch from "../AirportSearch.vue";
+import InfoCard from "../InfoCard.vue";
 import { notify } from "notiwind";
 import { ExclamationIcon } from "@heroicons/vue/solid";
 
@@ -355,6 +365,7 @@ export default {
     AvatarUploader,
     AirportSearch,
     ExclamationIcon,
+    InfoCard,
   },
   setup() {
     const router = useRouter();

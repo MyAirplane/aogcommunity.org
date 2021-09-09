@@ -11,9 +11,13 @@
         class="h-12 w-12 rounded-full overflow-hidden bg-gray-100"
         :style="{ height: size, width: size }"
       />
-      <span v-else class="h-12 w-12 rounded-full bg-gray-100">
+
+      <span
+        v-else
+        class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100"
+      >
         <svg
-          class="h-12 w-12 text-gray-300"
+          class="h-full w-full text-gray-300"
           fill="currentColor"
           viewBox="0 0 24 24"
         >

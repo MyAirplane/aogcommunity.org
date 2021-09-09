@@ -107,6 +107,18 @@ export const routes = [
         meta: { title: "My Profile", requiresAuth: true },
         component: () => import("./components/admin/profile/Profile.vue"),
       },
+      {
+        path: "/app/profile/verify",
+        name: "pilotverification",
+        meta: {
+          title: "Verify",
+          parentTitle: "My Profile",
+          parentPath: "/app/profile",
+          requiresAuth: true,
+        },
+        component: () =>
+          import("./components/admin/profile/PilotVerification.vue"),
+      },
     ],
   },
 ];

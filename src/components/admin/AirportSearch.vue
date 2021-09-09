@@ -9,6 +9,7 @@
         @input="$emit('update:modelValue', $event.target.value)"
         autocomplete="off"
         @focus="activateSearch"
+        @blur="deactivateSearch"
         :disabled="selected"
         ref="airport"
         required
@@ -160,6 +161,10 @@ export default {
       activated.value = true;
     }
 
+    async function deactivateSearch() {
+      activated.value = false;
+    }
+
     watch(
       () => props.modelValue,
       () => {
@@ -189,6 +194,7 @@ export default {
       setAirport,
       clearAirport,
       activateSearch,
+      deactivateSearch,
     };
   },
 };
