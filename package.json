@@ -8,31 +8,30 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.4.5",
-    "@supabase/supabase-js": "^1.21.0",
+    "@supabase/supabase-js": "^1.22.5",
+    "@sendgrid/mail": "^7.4.6",
     "dayjs": "^1.10.6",
     "dotenv": "^10.0.0",
-    "libphonenumber-js": "^1.9.23",
-    "litepie-datepicker": "^1.0.14",
+    "libphonenumber-js": "^1.9.26",
     "notiwind": "^1.2.2",
-    "twilio": "^3.66.1",
-    "vue": "^3.1.5",
-    "vue-router": "^4.0.10"
+    "twilio": "^3.67.1",
+    "vue": "^3.2.6",
+    "vue-router": "^4.0.11"
   },
   "devDependencies": {
-    "@headlessui/vue": "^1.4.0",
-    "@heroicons/vue": "^1.0.3",
+    "@headlessui/vue": "^1.4.1",
+    "@heroicons/vue": "^1.0.4",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
     "@types/tailwindcss": "^2.2.1",
-    "@vitejs/plugin-vue": "^1.3.0",
-    "@vue/compiler-sfc": "^3.1.5",
-    "autoprefixer": "^10.3.1",
-    "netlify-cli": "^6.0.5",
-    "tailwindcss": "^2.2.7",
-    "vite": "^2.4.4",
-    "vite-plugin-pwa": "^0.9.3"
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.6",
+    "netlify-cli": "^6.7.7",
+    "autoprefixer": "^10.3.4",
+    "tailwindcss": "^2.2.8",
+    "vite": "^2.5.1",
+    "vite-plugin-pwa": "^0.11.2"
   }
 }
