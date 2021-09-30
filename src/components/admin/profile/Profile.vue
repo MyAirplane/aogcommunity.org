@@ -62,6 +62,32 @@
         <div class="col-span-1 lg:col-span-2 border-t border-gray-200 pt-4">
           <h2 class="text-lg mt-1 text-gray-700 font-semibold">
             Private Contact Information
+
+            <router-link
+              to="/app/profile/verify"
+              class="
+                float-right
+                text-xs
+                flex
+                items-center
+                justify-center
+                font-medium
+              "
+            >
+              <CheckIcon
+                class="
+                  mr-1.5
+                  p-0.5
+                  text-green-600
+                  h-5
+                  w-5
+                  rounded-full
+                  bg-green-100
+                "
+                aria-hidden="true"
+              />
+              Verified
+            </router-link>
           </h2>
           <p class="text-sm mt-1 text-gray-500">
             Your full name, email and phone number are
@@ -163,6 +189,7 @@ import AvatarUploader from "../profile/AvatarUploader.vue";
 import AirportSearch from "../AirportSearch.vue";
 import { notify } from "notiwind";
 import InfoCard from "../InfoCard.vue";
+import { CheckIcon } from "@heroicons/vue/solid";
 
 import { AsYouType } from "libphonenumber-js";
 
@@ -171,6 +198,7 @@ export default {
     AvatarUploader,
     AirportSearch,
     InfoCard,
+    CheckIcon,
   },
   setup() {
     const loading = ref(true);
