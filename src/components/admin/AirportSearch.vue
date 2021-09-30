@@ -9,7 +9,6 @@
         @input="$emit('update:modelValue', $event.target.value)"
         autocomplete="off"
         @focus="activateSearch"
-        @blur="deactivateSearch"
         :disabled="selected"
         ref="airport"
         required
