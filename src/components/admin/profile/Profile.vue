@@ -64,6 +64,7 @@
             Private Contact Information
 
             <router-link
+              v-if="!store.profile.verified"
               to="/app/profile/verify"
               class="
                 float-right
@@ -170,7 +171,9 @@
               bg-gray-700
               hover:bg-gray-800
               focus:outline-none
-              focus:ring-2 focus:ring-offset-2 focus:ring-gray-500
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-gray-500
             "
             :value="loading ? 'Loading ...' : 'Update Profile'"
             :disabled="loading"
