@@ -64,7 +64,7 @@
             Private Contact Information
 
             <router-link
-              v-if="!store.profile.verified"
+              v-if="store.profile.verified"
               to="/app/profile/verify"
               class="
                 float-right
